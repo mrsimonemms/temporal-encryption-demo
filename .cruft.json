@@ -1,0 +1,18 @@
+{
+  "template": "https://github.com/mrsimonemms/new",
+  "commit": "d3e22867795499bfa3e5ce3b5c2d0a475bd4fbf5",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "project_name": "temporal-encryption-demo",
+      "description": "A Temporal workflow to demonstrate encryption",
+      "author": "Simon Emms <simon@simonemms.com>",
+      "_template": "https://github.com/mrsimonemms/new",
+      "_commit": "d3e22867795499bfa3e5ce3b5c2d0a475bd4fbf5"
+    }
+  },
+  "directory": "blank",
+  "skip": [
+    ".git"
+  ]
+}
