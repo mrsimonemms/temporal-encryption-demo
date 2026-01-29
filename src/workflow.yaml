@@ -1,0 +1,15 @@
+document:
+  dsl: 1.0.0
+  namespace: zigflow
+  name: simon-encrypted-demo
+  version: 0.0.1
+  metadata:
+    scheduleWorkflowName: simon-encrypted-demo
+    scheduleId: simon-encrypted-demo
+schedule:
+  every:
+    hours: 2
+do:
+  - set:
+      set:
+        message: Hello from Ziggy
