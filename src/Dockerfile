@@ -13,6 +13,7 @@
 # limitations under the License.
 
 FROM ghcr.io/mrsimonemms/zigflow
-ENV CONVERT_DATA=true
+ENV CONVERT_DATA=aes
 ENV WORKFLOW_FILE=/app/workflow.yaml
 COPY . .
+CMD [ "run" ]
