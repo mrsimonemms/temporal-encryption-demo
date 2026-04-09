@@ -10,6 +10,17 @@ schedule:
   every:
     hours: 2
 do:
+  - wait:
+      wait:
+        seconds: 30
   - set:
       set:
-        message: Hello from Ziggy
+        email: simon.emms@temporal.io
+        cardHolder: Simon Emms
+        cardNumber: 4111 1111 1111 1111
+        expiry: 12/29
+        cvv: 123
+        message: |-
+          This is a message encrypted with AES and decoded in the browser
+          by the Temporal Codec Server. Temporal never sees this data and it's
+          only visible within your network.
