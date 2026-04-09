@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ghcr.io/mrsimonemms/zigflow
+FROM ghcr.io/zigflow/zigflow
 ENV CONVERT_DATA=aes
 ENV WORKFLOW_FILE=/app/workflow.yaml
 COPY . .
