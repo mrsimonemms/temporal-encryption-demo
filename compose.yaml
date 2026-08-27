@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: ./src
+    restart: unless-stopped
+    environment:
+      DISABLE_TELEMETRY: "true"
+      TEMPORAL_API_KEY: ${TEMPORAL_API_KEY:-}
+      TEMPORAL_ADDRESS: ${TEMPORAL_ADDRESS:-temporal:7233}
+      TEMPORAL_NAMESPACE: ${TEMPORAL_NAMESPACE:-default}
+      TEMPORAL_TLS: ${TEMPORAL_TLS:-false}
+    depends_on:
+      temporal:
+        condition: service_healthy
+
+  codec-server:
+    image: ghcr.io/mrsimonemms/temporal-codec-server/golang
+    environment:
+      CORS_ALLOW_CREDS: false
+      DISABLE_AUTH: true
+      ENCRYPTION_TYPES: aes
+      KEYS_PATH: /keys.yaml
+      PORT: 8080
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src/keys.yaml:/keys.yaml
+
+  temporal:
+    image: temporalio/temporal
+    ports:
+      - 8233:8233
+    command: >
+      server start-dev --ip 0.0.0.0 --ui-codec-endpoint http://localhost:8080
+    depends_on:
+      # Not really a dependency of Temporal, but ensures everything starts up together
+      codec-server:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "temporal operator cluster health"]
+      interval: 10s
+      timeout: 10s
+      retries: 3

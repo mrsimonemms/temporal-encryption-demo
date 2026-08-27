@@ -9,5 +9,9 @@
       "extensions": [],
       "settings": {}
     }
-  }
+  },
+  "forwardPorts": [
+    8080,
+    8233
+  ]
 }

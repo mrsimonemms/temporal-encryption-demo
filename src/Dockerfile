@@ -14,6 +14,8 @@
 
 FROM ghcr.io/zigflow/zigflow
 ENV CONVERT_DATA=aes
+ENV CONVERTER_KEY_PATH=/app/keys.yaml
+ENV CONVERT_FAILURE_DATA=false
 ENV WORKFLOW_FILE=/app/workflow.yaml
 COPY . .
 CMD [ "run" ]
